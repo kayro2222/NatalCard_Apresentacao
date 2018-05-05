@@ -1,0 +1,113 @@
+﻿@model List<NatalCard.Models.CadastroModel>
+
+@{
+    Layout = "~/Views/Shared/_Cadastro.cshtml";
+    ViewBag.Title = "Cadastro";
+    ViewBag.Lista = Model;
+}
+
+@section Styles{
+    <link href="~/Content/bootstrap-select.css" rel="stylesheet" />
+}
+
+@section GridTitle{
+    <th>Nome</th>
+    <th>RG</th>
+    <th>CPF</th>
+    <th>Telefone</th>
+    <th>Data de Nascimento</th>
+    <th>Data de Cadastro</th>
+    <th>Ação</th>
+}
+
+@section GridLine{
+    @{var linha = 0;
+        foreach (var item in Model)
+        {
+            linha++;
+            if (linha <= ViewBag.QtdMaxPagination)
+            {
+                <tr data-id="@item.Id">
+                    <td>@item.Nome</td>
+                    <td>@item.Rg</td>
+                    <td>@item.Cpf</td>
+                    <td>@item.Telefone</td>
+                    <td>@item.DataNascimento</td>
+                    <td>@item.DataCadastro</td>
+                    <td>
+                        <a class="btn btn-primary btn-alterar" role="button">Alterar <i class="glyphicon glyphicon-pencil"></i></a>
+                        <a class="btn btn-danger btn-excluir" role="button">Excluir <i class="glyphicon glyphicon-trash"></i></a>
+                    </td>
+                </tr>
+            }
+            else
+            {
+                break;
+            }
+        }
+    }
+}
+
+@section CadastroForm{
+    <div class="row">
+        <div class="form-group">
+            @Html.Label("txt_uf", "UF", new { @class = "col-md-3 control-label" })
+            <div class="col-md-6">
+                <select class="form-control" id="sel_uf">
+                    <option value="0" selected>RN</option>
+                    <option value="1">PB</option>
+                </select>
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.Label("txt_nome", "Nome", new { @class = "col-md-3 control-label" })
+            <div class="col-md-6">
+                @Html.TextBox("txt_nome", null, new { @class = "form-control" })
+            </div>
+        </div>
+        <div class="form-group" id="field_rg">
+            @Html.Label("txt_rg", "RG", new { @class = "col-md-3 control-label" })
+            <div class="col-md-6">
+                @Html.TextBox("txt_rg", null, new { @class = "form-control" })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.Label("txt_cpf", "CPF", new { @class = "col-md-3 control-label" })
+            <div class="col-md-6">
+                @Html.TextBox("txt_cpf", null, new { @class = "form-control" })
+            </div>
+        </div>
+        <div class="form-group" id="telefone_container">
+            @Html.Label("txt_telefone", "Telefone", new { @class = "col-md-3 control-label" })
+            <div class="col-md-6">
+                @Html.TextBox("txt_telefone", null, new { @class = "form-control telefone_content" })
+            </div>
+            <div class="col-md-3">
+                <a id="btn_addTelefone" class="btn btn-primary" role="button"><i class="glyphicon glyphicon-plus"></i> Adicionar</a>
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.Label("txt_dataNascimento", "Data de Nascimento", new { @class = "col-md-3 control-label" })
+            <div class="col-md-6">
+                @Html.TextBox("txt_dataNascimento", null, new { @class = "form-control" })
+            </div>
+        </div>
+    </div>
+}
+
+@section Scripts{
+    <script src="~/Scripts/Cadastro/Cadastro.js"></script>
+    <script src="~/Scripts/bootstrap-select.js"></script>
+    <script>
+        /* VARIÁVEIS RAZOR */
+        var titulo = '@ViewBag.Title';
+        var urlAlterar = '@Url.Action("RecuperarDados", "Cadastro")';
+        var urlSalvar = '@Url.Action("SalvarDados", "Cadastro")';
+        var urlExcluir = '@Url.Action("ExcluirDados", "Cadastro")';
+        var urlPagination = '@Url.Action("CadastroPagination", "Cadastro")';
+        var urlQtdPagination = '@Url.Action("CadastroPagination", "Cadastro")';
+        var urlFiltroNome = '@Url.Action("CadastroPagination", "Cadastro")';
+        var urlFiltroDataNascimento = '@Url.Action("CadastroPagination", "Cadastro")';
+        var urlFiltroDataCadastro = '@Url.Action("CadastroPagination", "Cadastro")';
+    </script>
+}

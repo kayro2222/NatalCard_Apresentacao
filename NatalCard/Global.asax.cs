@@ -17,5 +17,23 @@ namespace NatalCard
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
         }
+
+        void Application_Error(object sender, EventArgs e) {
+            Exception exception = Server.GetLastError();
+
+            if (exception is HttpRequestValidationException) {
+                Response.Clear();
+                Response.StatusCode = 200;
+                Response.ContentType = "application/json";
+                Response.Write("{ \"Result\":\"AVISO\",\"Mensagens\":[\"Peguei você.\"],\"IdSalvo\":\"\"}");
+                Response.End();
+            }
+            else if (exception is HttpAntiForgeryException)
+            {
+                Response.Clear();
+                Response.StatusCode = 200;
+                Response.End();
+            }
+        }
     }
 }

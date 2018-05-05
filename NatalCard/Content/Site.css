@@ -3,6 +3,62 @@
     padding-bottom: 20px;
 }
 
+footer p {
+    text-align: center;
+}
+
+.jumbotron {
+    margin-top: 3%;
+}
+
+.invisivel {
+    display: none;
+}
+
+#apresentacao h1 {
+    text-align: center;
+}
+
+#apresentacao p {
+    text-align: center;
+}
+
+#Cadastro {
+    width: 1000px;
+    margin: 0 auto;
+}
+
+#Cadastro_content {
+    margin-top: 20px;
+}
+
+#Cadastro_cabecalho{
+    border-bottom: 1px #dddddd solid;
+}
+
+#cabecalho_grid {
+    margin-bottom: 20px;
+}
+
+#Cadastro_grid > thead > tr:nth-child(2){
+    width: 150px;
+}
+
+#Cadastro_grid > thead > tr:nth-child(3) {
+    width: 250px;
+}
+
+#msg_gridNulo {
+    height: 100px;
+    text-align: center;
+    border: 1px solid #dddddd;
+    line-height: 100px;
+}
+
+#dropdownQtdPage {
+    width: auto;
+}
+
 /* Set padding to keep content from hitting the edges */
 .body-content {
     padding-left: 15px;
@@ -21,4 +77,15 @@ input,
 select,
 textarea {
     max-width: 280px;
+}
+
+.container-login {
+    width: 400px;
+    margin: 0 auto;
+}
+
+.titulo {
+    margin-top: 100px;
+    margin-bottom: 30px;
+    text-transform: uppercase;
 }
